@@ -1,0 +1,17 @@
+﻿  扫雷.cpp
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(188,3): error C2665: “loadimage”: 没有重载函数可以转换所有参数类型
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\VS\include\easyx.h(259,6): message : 可能是“void loadimage(IMAGE *,LPCTSTR,LPCTSTR,int,int,bool)”
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(188,3): message : “void loadimage(IMAGE *,LPCTSTR,LPCTSTR,int,int,bool)”: 无法将参数 2 从“char [50]”转换为“LPCTSTR”
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(188,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+C:\Program Files\Microsoft Visual Studio\2022\Enterprise\VC\Auxiliary\VS\include\easyx.h(258,6): message : 或    “void loadimage(IMAGE *,LPCTSTR,int,int,bool)”
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(188,3): message : “void loadimage(IMAGE *,LPCTSTR,int,int,bool)”: 无法将参数 2 从“char [50]”转换为“LPCTSTR”
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(188,22): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(188,3): message : 尝试匹配参数列表“(IMAGE *, char [50], int, int)”时
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(199,14): error C2664: “int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)”: 无法将参数 2 从“const char [29]”转换为“LPCWSTR”
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(199,36): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\Windows Kits\10\Include\10.0.22000.0\um\winuser.h(9161,1): message : 参见“MessageBoxW”的声明
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(199,14): message : 尝试匹配参数列表“(HWND, const char [29], const char [5], long)”时
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(215,14): error C2664: “int MessageBoxW(HWND,LPCWSTR,LPCWSTR,UINT)”: 无法将参数 2 从“const char [29]”转换为“LPCWSTR”
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(215,36): message : 指向的类型不相关; 转换需要 reinterpret_cast、C 样式强制转换或带圆括号的函数样式强制转换
+D:\Windows Kits\10\Include\10.0.22000.0\um\winuser.h(9161,1): message : 参见“MessageBoxW”的声明
+F:\visual stdio\扫雷\扫雷\扫雷.cpp(215,14): message : 尝试匹配参数列表“(HWND, const char [29], const char [5], long)”时
