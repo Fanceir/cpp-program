@@ -62,12 +62,15 @@ private:
     int flagCount;        // 标记计数器
     bool isOver;          // 游戏是否结束
     bool isVictorious;    // 是否获胜
+    bool isFirstClick;
 
 public:
     MinesweeperGame(Map& map) : map(map) {
         flagCount = 0;
         isOver = false;
         isVictorious = false;
+        isFirstClick = true;
+
         initgraph(COL * IMGW, ROW * IMGW, EX_SHOWCONSOLE);
     }
 
@@ -123,8 +126,6 @@ public:
         }
     }
     void handleMouseEvent() {
-        static bool isFirstClick = true; // 添加这行代码，用于标记是否第一次点击
-
         ExMessage msg;
         if (peekmessage(&msg, EX_MOUSE)) {
             int r = msg.y / IMGW;
@@ -133,11 +134,16 @@ public:
                 if (map.getValue(r, c) >= 19 && map.getValue(r, c) <= 28) {
                     if (map.getValue(r, c) == 19 && isFirstClick) { // 添加 isFirstClick 的判断
                         while (map.getValue(r, c) == 19) {
+                            //std::cout << "第一次雷" << std::endl;
                             map = Map();
-                        }
-                        isFirstClick = false; 
-                    }
+                            int r = msg.y / IMGW;
+                            int c = msg.x / IMGW;
+                            
 
+                        }
+                        isFirstClick = false;
+                    }
+                    isFirstClick = false;
                     map.setValue(r, c, map.getValue(r, c) - 20);
                     openNull(r, c);
                     judge(r, c);
@@ -169,7 +175,6 @@ public:
             sprintf_s(filename, "./images/%d.jpg", i);
             loadimage(img + i, filename, IMGW, IMGW);
         }
-
         while (true) {
             handleMouseEvent();
             drawMap(img);
@@ -180,6 +185,8 @@ public:
                     isOver = false;
                     isVictorious = false;
                     flagCount = 0; //记录扫出来雷的数目清零
+                    isFirstClick = true;
+
                 }
                 else if (ret == IDCANCEL) {
                     exit(1);
@@ -190,8 +197,9 @@ public:
                 if (ret == IDOK) {
                     map = Map();
                     isOver = false;
-                    isVictorious = false;
+                    isVictorious = false;             
                     flagCount = 0; //记录扫出来雷的数目清零
+                    isFirstClick = true;
                 }
                 else if (ret == IDCANCEL) {
                     exit(1);
