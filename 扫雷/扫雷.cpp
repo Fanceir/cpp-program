@@ -1,4 +1,4 @@
-﻿#include <iostream>
+#include <iostream>
 #include <ctime>
 #include <iomanip>
 #include <easyx.h>       // 用于图形和用户界面的库
@@ -122,27 +122,26 @@ public:
             isVictorious = true;
         }
     }
-
     void handleMouseEvent() {
+        static bool isFirstClick = true; // 添加这行代码，用于标记是否第一次点击
+
         ExMessage msg;
         if (peekmessage(&msg, EX_MOUSE)) {
             int r = msg.y / IMGW;
             int c = msg.x / IMGW;
             if (msg.message == WM_LBUTTONDOWN) {
                 if (map.getValue(r, c) >= 19 && map.getValue(r, c) <= 28) {
-                    if (map.getValue(r, c) == 19) {
-                        // 第一次点击是雷时重新生成地图
-                        if (flagCount == 0) {
-                            while (map.getValue(r, c) == -1) {
-                                map = Map();
-                            }
+                    if (map.getValue(r, c) == 19 && isFirstClick) { // 添加 isFirstClick 的判断
+                        while (map.getValue(r, c) == 19) {
+                            map = Map();
                         }
+                        isFirstClick = false; 
                     }
 
                     map.setValue(r, c, map.getValue(r, c) - 20);
                     openNull(r, c);
                     judge(r, c);
-                    victory(); // 判断是否获胜
+                    victory(); // 检查是否获胜
                 }
             }
             else if (msg.message == WM_RBUTTONDOWN) {
@@ -155,12 +154,13 @@ public:
                     map.setValue(r, c, map.getValue(r, c) - 80);
 
                     if (map.getValue(r, c) == 19) {
-                        flagCount--; // 正确标记的雷数量减少
+                        flagCount--;
                     }
                 }
             }
         }
     }
+
 
     void gameLoop() {
         IMAGE img[12];
