@@ -130,7 +130,7 @@ public:
             int c = msg.x / IMGW;
             if (msg.message == WM_LBUTTONDOWN) {
                 if (map.getValue(r, c) >= 19 && map.getValue(r, c) <= 28) {
-                    if (map.getValue(r, c) == -1) {
+                    if (map.getValue(r, c) == 19) {
                         // 第一次点击是雷时重新生成地图
                         if (flagCount == 0) {
                             while (map.getValue(r, c) == -1) {
